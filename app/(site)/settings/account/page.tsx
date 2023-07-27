@@ -1,5 +1,7 @@
 "use client"
 
+import { toast, Toaster } from "sonner"
+
 import { useCurrentUser } from "@/hooks/user"
 
 import AccountForm from "./account-form"
@@ -24,6 +26,7 @@ export default function AccountSettings() {
         name={user?.name!}
         username={user?.username!}
       />
+      <Toaster richColors />
     </>
   )
 }

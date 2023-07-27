@@ -4,6 +4,7 @@ import { useCallback, useState } from "react"
 import { ImageIcon } from "lucide-react"
 import { useDropzone } from "react-dropzone"
 import type { FileWithPath } from "react-dropzone"
+import { toast } from "sonner"
 
 import { useUploadThing } from "@/lib/uploadthing"
 import { useCurrentUser, useUpdateAccount } from "@/hooks/user"
@@ -30,7 +31,6 @@ export function ImageUpload() {
   const { startUpload } = useUploadThing("imageUploader", {
     onClientUploadComplete: async (res: any) => {
       mutateAsync({ image: res[0].fileUrl })
-      setIsLoading(false)
     },
     onUploadError: () => {
       alert("error occurred while uploading")
@@ -39,7 +39,15 @@ export function ImageUpload() {
 
   const onUpload = () => {
     setIsLoading(true)
-    startUpload(files)
+    toast.promise(startUpload(files), {
+      loading: "Image Uploading ...",
+      success: () => {
+        setPath("")
+        setIsLoading(false)
+        return `Image Successfully Updated!`
+      },
+      error: "Error",
+    })
   }
 
   return (

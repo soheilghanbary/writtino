@@ -35,7 +35,7 @@ export default function AccountForm({ bio, name, username }: AccountProps) {
         <Input
           id="name"
           size={32}
-          className="w-[400px]"
+          className="max-w-[400px]"
           ref={nameRef}
           defaultValue={name}
         />
@@ -47,7 +47,7 @@ export default function AccountForm({ bio, name, username }: AccountProps) {
         <Input
           id="username"
           size={32}
-          className="w-[400px]"
+          className="max-w-[400px]"
           ref={usernameRef}
           defaultValue={username}
         />
@@ -59,7 +59,7 @@ export default function AccountForm({ bio, name, username }: AccountProps) {
         <Textarea
           id="name"
           ref={bioRef}
-          className="w-[400px]"
+          className="max-w-[400px]"
           defaultValue={bio}
         />
       </div>
