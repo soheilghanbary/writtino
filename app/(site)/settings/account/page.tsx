@@ -3,13 +3,13 @@
 import { useCurrentUser } from "@/hooks/user"
 
 import AccountForm from "./account-form"
+import { ImageUpload } from "./image-upload"
 
 export default function AccountSettings() {
   const { data: user, isLoading } = useCurrentUser()
 
   return (
     <>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
       <div className="mb-4">
         <h1 className="text-3xl font-extrabold leading-relaxed text-foreground">
           Account Setting
@@ -18,6 +18,7 @@ export default function AccountSettings() {
           manage your account setting
         </p>
       </div>
+      <ImageUpload />
       <AccountForm
         bio={user?.bio!}
         name={user?.name!}

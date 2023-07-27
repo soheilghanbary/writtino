@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation"
 
+import { useCurrentUser } from "@/hooks/user"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -16,13 +17,14 @@ import { ThemeToggle } from "../theme-toggle"
 import { SignOutButton } from "./signout-button"
 
 export function HeaderOption() {
+  const { data: user } = useCurrentUser()
   const router = useRouter()
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarImage src={user?.image} alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>

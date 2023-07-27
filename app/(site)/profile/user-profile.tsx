@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import { useCurrentUser } from "@/hooks/user"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Icons } from "@/components/icons"
+import { UserAvatar } from "@/components/user-avatar"
 
 export function UserProfile() {
   const { data: user, isLoading } = useCurrentUser()
@@ -37,7 +38,7 @@ export function UserProfile() {
         </h2>
         <ul className="space-y-2">
           <li className="flex items-center text-muted-foreground">
-            <Icons.link className="mr-2 h-4 w-4 text-teal-500" /> hamkary.dev
+            <Icons.mail className="mr-2 h-4 w-4 text-teal-500" /> {user.email}
           </li>
           <li className="flex items-center text-muted-foreground">
             <Icons.twitter className="mr-2 h-4 w-4 text-sky-500" />
@@ -73,25 +74,3 @@ export const UserProfileSkeleton = () => (
     </section>
   </>
 )
-
-const UserAvatar = ({ image, alt }: { image: string; alt: string }) => {
-  const [isReady, setIsReady] = useState(false)
-
-  const onLoadCallback = () => {
-    setIsReady(true)
-  }
-
-  return (
-    <Image
-      fill
-      alt={alt}
-      src={image}
-      priority
-      className={cn(
-        "h-full w-full rounded-full bg-background object-cover transition duration-700",
-        isReady ? "scale-100 blur-0" : "scale-110 blur-md"
-      )}
-      onLoadingComplete={onLoadCallback}
-    />
-  )
-}
