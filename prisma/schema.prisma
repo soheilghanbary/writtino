@@ -54,8 +54,11 @@ model User {
   posts         Post[]
   likes         Like[]
   comments      Comment[]
-  website       String?   @default("")
   bio           String?   @default("")
+  website       String?   @default("")
+  twitter       String?   @default("")
+  linkedin      String?   @default("")
+  instagram     String?   @default("")
 }
 
 model Like {

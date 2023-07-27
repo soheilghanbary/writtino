@@ -1,4 +1,5 @@
 import {
+  AirVent,
   AlarmClock,
   AlertTriangle,
   ArrowDown,
@@ -36,6 +37,7 @@ import {
   LayoutDashboard,
   LeafyGreen,
   Link,
+  Link2,
   Linkedin,
   Loader2,
   LogOut,
@@ -72,7 +74,6 @@ import {
   Wallet,
   X,
   type LucideProps,
-  AirVent,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -112,7 +113,7 @@ export const Icons = {
   edit: Edit,
   crop: Crop,
   reset: RefreshCw,
-  link: Link,
+  link: Link2,
   linkedin: Linkedin,
   insta: Instagram,
   send: Send,

@@ -7,6 +7,7 @@ import { useUpdateAccount } from "@/hooks/user"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Icons } from "@/components/icons"
 
 export default function AccountForm({ bio, name, username }: AccountProps) {
   const nameRef = useRef<HTMLInputElement>(null)
@@ -63,6 +64,7 @@ export default function AccountForm({ bio, name, username }: AccountProps) {
         />
       </div>
       <Button disabled={isLoading} type="submit" variant={"default"}>
+        {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
         Save
       </Button>
     </form>

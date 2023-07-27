@@ -11,5 +11,5 @@ export const getUserSession = async () => {
 // get current user
 export const getCurrentUser = async () => {
   const session = await getServerSession(authOptions)
-  return await prisma.user.findUnique({ where: { id: session?.user?.id } })
+  return await prisma.user.findFirst({ where: { id: session?.user?.id } })
 }

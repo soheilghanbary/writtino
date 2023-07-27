@@ -3,3 +3,10 @@ export interface AccountProps {
   username: string
   bio: string
 }
+
+export interface SocialProps {
+  twitter: string
+  website: string
+  linkedin: string
+  instagram: string
+}
