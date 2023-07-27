@@ -5,11 +5,6 @@ import { Icons } from "@/components/icons"
 
 const settings = [
   {
-    title: "Dashboard",
-    href: "/settings",
-    icon: Icons.dashboard,
-  },
-  {
     title: "Account",
     href: "/settings/account",
     icon: Icons.user,

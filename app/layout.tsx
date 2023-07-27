@@ -4,8 +4,8 @@ import { ThemeProvider } from "@/components/providers/theme-provider"
 import "@/styles/globals.css"
 
 import type { Metadata } from "next"
+import { inter } from "@/public/fonts/font"
 
-import { inter, poppins } from "@/lib/fonts"
 import { QueryProvider } from "@/components/providers/query-provider"
 
 export const metadata: Metadata = {

@@ -41,7 +41,7 @@ export function HeaderOption() {
           <Icons.saved className="mr-2 h-4 w-4" />
           Saved
         </DropdownMenuItem>
-        <DropdownMenuItem onSelect={(e) => router.push("/settings")}>
+        <DropdownMenuItem onSelect={(e) => router.push("/settings/account")}>
           <Icons.settings className="mr-2 h-4 w-4" />
           Settings
         </DropdownMenuItem>

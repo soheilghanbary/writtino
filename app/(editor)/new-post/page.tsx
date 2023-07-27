@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react"
 
-import Teditor from "@/components/editor"
+import { Teditor } from "@/components/editor"
 
 export default function NewPostPage() {
   const textareaRef = useRef<HTMLTextAreaElement>(null)

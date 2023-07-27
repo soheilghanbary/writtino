@@ -18,7 +18,7 @@ import {
 import { Button } from "../ui/button"
 import { HorizontalRule } from "./hr-extension"
 
-const Teditor = () => {
+export const Teditor = () => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -134,5 +134,3 @@ const Teditor = () => {
     </>
   )
 }
-
-export default Teditor
