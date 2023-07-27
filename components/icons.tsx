@@ -33,6 +33,7 @@ import {
   HomeIcon,
   Image,
   Instagram,
+  LayoutDashboard,
   LeafyGreen,
   Link,
   Linkedin,
@@ -71,6 +72,7 @@ import {
   Wallet,
   X,
   type LucideProps,
+  AirVent,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -100,6 +102,8 @@ export const Icons = {
   check: Check,
   add: Plus,
   write: PenSquare,
+  dashboard: LayoutDashboard,
+  social: AirVent,
   addCircle: PlusCircle,
   remove: Minus,
   view: Eye,

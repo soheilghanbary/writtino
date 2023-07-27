@@ -6,6 +6,7 @@ import "@/styles/globals.css"
 import type { Metadata } from "next"
 
 import { inter, poppins } from "@/lib/fonts"
+import { QueryProvider } from "@/components/providers/query-provider"
 
 export const metadata: Metadata = {
   title: {
@@ -32,9 +33,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          {children}
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            {children}
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   )

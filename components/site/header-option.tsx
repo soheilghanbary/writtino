@@ -31,7 +31,7 @@ export function HeaderOption() {
           <Icons.user className="mr-2 h-4 w-4" />
           Profile
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onSelect={(e) => router.push("/new-post")}>
           <Icons.write className="mr-2 h-4 w-4" />
           New Post
         </DropdownMenuItem>
