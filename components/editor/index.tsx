@@ -15,14 +15,14 @@ import {
   MoreHorizontal,
 } from "lucide-react"
 
-import { usePost } from "@/hooks/use-post"
+import { usePostState } from "@/hooks/use-post"
 
 import { Button } from "../ui/button"
 import { Skeleton } from "../ui/skeleton"
 import { HorizontalRule } from "./hr-extension"
 
 export const Teditor = () => {
-  const { updateContent } = usePost()
+  const { updateContent } = usePostState()
 
   const editor = useEditor({
     extensions: [

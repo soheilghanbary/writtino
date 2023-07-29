@@ -1,7 +1,9 @@
+import { useAllPosts } from "@/hooks/use-post"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Postcard } from "@/components/post/post-card"
-import { MainNav } from "@/components/site/main-nav"
+
+import { PostList } from "./post-list"
 
 const topics = [
   "Programming",
@@ -46,20 +48,7 @@ const users = [
 export default function BlogPage() {
   return (
     <section className="mx-auto flex max-w-screen-lg gap-10">
-      <div className="w-4/6 flex-1 space-y-8">
-        <Postcard />
-        <Postcard />
-        <Postcard />
-        <Postcard />
-        <Postcard />
-        <Postcard />
-        <Postcard />
-        <Postcard />
-        <Postcard />
-        <Postcard />
-        <Postcard />
-        <Postcard />
-      </div>
+      <PostList />
       <div className="w-2/6">
         <section className="sticky top-20 space-y-8">
           <div className="space-y-4">

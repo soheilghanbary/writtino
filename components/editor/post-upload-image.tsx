@@ -1,12 +1,11 @@
 import { useDropzone } from "react-dropzone"
 
-import { cn } from "@/lib/utils"
-import { usePostImage } from "@/hooks/use-post"
+import { usePostState } from "@/hooks/use-post"
 
 import { PostImage } from "./post-image"
 
 export function PostImageUpload() {
-  const { onDrop, path } = usePostImage()
+  const { onDrop, path } = usePostState()
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
@@ -17,7 +16,7 @@ export function PostImageUpload() {
   return (
     <div className="space-y-2">
       <label className="text-sm font-medium" htmlFor="title">
-        Post Cover
+        Post Cover {path}
       </label>
       {path.length ? (
         <div

@@ -1,45 +1,48 @@
 import Image from "next/image"
-import Balancer from "react-wrap-balancer"
+import Link from "next/link"
+import { Post } from "@prisma/client"
 
+import { PostType } from "@/types/post"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 import { Icons } from "../icons"
 
-export function Postcard() {
+export function Postcard({ id, title, description, image }: PostType) {
   return (
     <section className="flex max-w-screen-sm items-center space-x-6">
       <div className="flex-1 space-y-2">
-        <PostTitle />
-        <PostDescription />
+        <PostTitle text={title} />
+        <PostDescription text={description} />
         <PostFooter />
       </div>
-      <PostCover />
+      <PostCover image={image} id={id} />
     </section>
   )
 }
-
-export function PostCover() {
+export function PostCover({ image, id }: { image: string; id: string }) {
   return (
-    <div className="relative h-24 w-24 rounded-lg shadow md:h-36 md:w-36">
+    <Link
+      href={`/blog/${id}`}
+      className="relative h-24 w-24 rounded-lg shadow md:h-36 md:w-36"
+    >
       <Image
         fill
         className="h-full w-full rounded-lg object-cover"
         alt="my cover post"
-        src={"/images/cover-2.jpeg"}
+        src={image}
       />
-    </div>
+    </Link>
   )
 }
 
-export function PostTitle() {
-  return <h2 className="text-lg font-semibold">God of War: Ragnarök</h2>
+export function PostTitle({ text }: { text: string }) {
+  return <h2 className="text-lg font-semibold">{text}</h2>
 }
 
-export function PostDescription() {
+export function PostDescription({ text }: { text: string }) {
   return (
-    <p className="hidden border-b pb-2 text-xs leading-5 text-foreground/60 md:inline-block">
-      God of War Ragnarok: Embark on an epic Norse odyssey with Kratos and
-      Atreus in the highly anticipated sequel.
+    <p className="hidden border-b pb-2 text-xs leading-5 text-foreground/60 md:block">
+      {text}
     </p>
   )
 }

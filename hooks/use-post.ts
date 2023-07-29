@@ -1,42 +1,57 @@
-import { useCallback, useMemo, useState } from "react"
-import { useMutation } from "@tanstack/react-query"
+import { useCallback, useMemo } from "react"
+import { useQuery } from "@tanstack/react-query"
 import { atom, useAtom } from "jotai"
 import { FileWithPath } from "react-dropzone"
+
+import { PostType } from "@/types/post"
 
 interface PostEditorProps {
   title: string
   description: string
-  image: string
+  image: File
   content: string
 }
 
 const postAtom = atom<PostEditorProps>({
   title: "",
   description: "",
-  image: "",
   content: "",
+  image: new File([], ""),
 })
 
-const postImageAtom = atom<File[]>([])
-
-export const usePost = () => {
+export const usePostState = () => {
   const [post, setPost] = useAtom(postAtom)
   const updateContent = (content: string) => setPost({ ...post, content })
-  const updateImage = (image: string) => setPost({ ...post, image })
+  const updateImage = (image: File) => setPost({ ...post, image })
 
-  return { updateContent, updateImage, post }
-}
-
-export const usePostImage = () => {
-  const [files, setFiles] = useAtom(postImageAtom)
   const onDrop = useCallback((acceptedFiles: FileWithPath[]) => {
-    setFiles(acceptedFiles)
+    updateImage(acceptedFiles[0])
   }, [])
 
   const path = useMemo(
-    () => (files[0] ? URL.createObjectURL(files[0]) : ""),
-    [files]
+    () => (post.image.name ? URL.createObjectURL(post.image) : ""),
+    [post.image]
   )
 
-  return { onDrop, files, path }
+  return { updateContent, updateImage, post, onDrop, path }
+}
+
+export const useAllPosts = () => {
+  return useQuery<PostType[]>({
+    queryKey: ["posts"],
+    queryFn: async () => {
+      const res = await fetch("/api/posts")
+      return await res.json()
+    },
+  })
+}
+
+export const usePost = (postId: string) => {
+  return useQuery<PostType>({
+    queryKey: ["posts", postId],
+    queryFn: async () => {
+      const res = await fetch(`/api/posts?id=${postId}`)
+      return await res.json()
+    },
+  })
 }

@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { useMutation } from "@tanstack/react-query"
 
 import { useUploadThing } from "@/lib/uploadthing"
-import { usePost, usePostImage } from "@/hooks/use-post"
+import { usePostState } from "@/hooks/use-post"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -22,8 +22,7 @@ import { BackButton } from "@/components/back-button"
 import { PostImageUpload } from "./post-upload-image"
 
 export function EditorHeader() {
-  const { post } = usePost()
-  const { files } = usePostImage()
+  const { post } = usePostState()
   const titleRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
 
@@ -51,7 +50,7 @@ export function EditorHeader() {
     },
   })
 
-  const onPublish = () => startUpload(files)
+  const onPublish = () => startUpload([post.image])
 
   return (
     <div className="flex items-center justify-between">
