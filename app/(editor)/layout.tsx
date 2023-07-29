@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react"
 
-import { EditorHeader } from "./header"
+import { EditorHeader } from "@/components/editor/editor-header"
 
 export default function EditorLayout({ children }: PropsWithChildren) {
   return (

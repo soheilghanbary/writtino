@@ -1,10 +1,10 @@
 "use client"
 
-import { useCallback } from "react"
+import { useCallback, useEffect } from "react"
 import Image from "@tiptap/extension-image"
 import Link from "@tiptap/extension-link"
 import Placeholder from "@tiptap/extension-placeholder"
-import { EditorContent, useEditor } from "@tiptap/react"
+import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
   BoldIcon,
@@ -15,10 +15,15 @@ import {
   MoreHorizontal,
 } from "lucide-react"
 
+import { usePost } from "@/hooks/use-post"
+
 import { Button } from "../ui/button"
+import { Skeleton } from "../ui/skeleton"
 import { HorizontalRule } from "./hr-extension"
 
 export const Teditor = () => {
+  const { updateContent } = usePost()
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -44,9 +49,9 @@ export const Teditor = () => {
         },
       }),
     ],
-    content: "<p>Hello World!</p>",
+    content: "",
     autofocus: true,
-    onBlur({ editor }) {},
+    onBlur: ({ editor }) => updateContent(editor.getHTML()),
   })
 
   const onBold = () => editor?.chain().focus().toggleBold().run()
@@ -83,12 +88,21 @@ export const Teditor = () => {
   }, [editor])
 
   if (!editor) {
-    return <p>ready...</p>
+    return (
+      <div className="space-y-4">
+        <Skeleton className="h-4 w-32 rounded-lg" />
+        <Skeleton className="h-4 w-full rounded-lg" />
+      </div>
+    )
   }
 
   return (
     <>
-      <div className="sticky top-14 z-40 mb-4 flex items-center gap-2 rounded-lg border bg-background p-2 shadow">
+      <BubbleMenu
+        className="z-40 mb-4 flex items-center gap-2 rounded-lg border bg-background p-2 shadow"
+        editor={editor}
+        tippyOptions={{ duration: 100 }}
+      >
         <Button
           variant={editor.isActive("bold") ? "default" : "outline"}
           size={"icon"}
@@ -129,7 +143,7 @@ export const Teditor = () => {
         >
           <MoreHorizontal className="h-4 w-4" />
         </Button>
-      </div>
+      </BubbleMenu>
       <EditorContent editor={editor} />
     </>
   )
