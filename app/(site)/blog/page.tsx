@@ -1,8 +1,7 @@
-import { useAllPosts } from "@/hooks/use-post"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { Postcard } from "@/components/post/post-card"
 
+import { PostLength } from "./post-length"
 import { PostList } from "./post-list"
 
 const topics = [
@@ -48,6 +47,7 @@ const users = [
 export default function BlogPage() {
   return (
     <section className="mx-auto flex max-w-screen-lg gap-10">
+      <PostLength />
       <PostList />
       <div className="w-2/6">
         <section className="sticky top-20 space-y-8">
