@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useMutation } from "@tanstack/react-query"
 
 import { useUploadThing } from "@/lib/uploadthing"
@@ -19,9 +19,11 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { BackButton } from "@/components/back-button"
 
+import { Icons } from "../icons"
 import { PostImageUpload } from "./post-upload-image"
 
 export function EditorHeader() {
+  const [loading, setLoading] = useState(false)
   const { post } = usePostState()
   const titleRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
@@ -44,13 +46,17 @@ export function EditorHeader() {
         image: res[0].fileUrl,
       }
       await mutateAsync(newPost)
+      setLoading(false)
     },
     onUploadError: () => {
       alert("error occurred while uploading")
     },
   })
 
-  const onPublish = () => startUpload([post.image])
+  const onPublish = () => {
+    setLoading(true)
+    startUpload([post.image])
+  }
 
   return (
     <div className="flex items-center justify-between">
@@ -85,9 +91,10 @@ export function EditorHeader() {
           <DialogFooter>
             <Button
               onClick={onPublish}
-              disabled={isLoading}
-              variant={"default"}
+              disabled={loading}
+              variant={loading ? "outline" : "default"}
             >
+              {loading && <Icons.spinner className="h-4 w-4 animate-spin" />}
               Create Post
             </Button>
           </DialogFooter>

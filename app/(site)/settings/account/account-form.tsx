@@ -23,7 +23,7 @@ export default function AccountForm({ bio, name, username }: AccountProps) {
       username: usernameRef.current?.value!,
       bio: bioRef.current?.value!,
     }
-    await mutateAsync(user)
+    return await mutateAsync(user)
   }
 
   return (

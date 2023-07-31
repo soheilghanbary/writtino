@@ -10,7 +10,7 @@ import { MainNav } from "./main-nav"
 export const SiteHeader = async () => {
   const userId = await getUserSession()
   return (
-    <header className="sticky top-0 z-50 border-b bg-background py-2">
+    <header className="z-50 border-b bg-background py-2">
       <nav className="container mx-auto flex items-center justify-between">
         <Logo />
         <MainNav />

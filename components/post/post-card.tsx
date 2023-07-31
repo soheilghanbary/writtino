@@ -1,19 +1,21 @@
+import { PropsWithChildren } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Post } from "@prisma/client"
 
 import { PostType } from "@/types/post"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 import { Icons } from "../icons"
 
-export function Postcard({ id, title, description, image }: PostType) {
+export function Postcard({ id, title, description, image, user }: PostType) {
   return (
     <section className="flex max-w-screen-sm items-center space-x-6">
       <div className="flex-1 space-y-2">
         <PostTitle text={title} />
         <PostDescription text={description} />
-        <PostFooter />
+        <PostFooter>
+          <PostAuthor {...user} />
+        </PostFooter>
       </div>
       <PostCover image={image} id={id} />
     </section>
@@ -47,10 +49,10 @@ export function PostDescription({ text }: { text: string }) {
   )
 }
 
-export function PostFooter() {
+export function PostFooter({ children }: PropsWithChildren) {
   return (
     <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-      <PostAuthor />
+      {children}
       <div className="flex items-center gap-6 text-sm text-muted-foreground">
         <PostLike />
         <PostSave />
@@ -72,19 +74,19 @@ export function PostSave() {
   return <Icons.saved className="h-4 w-4 text-sky-500 md:h-5 md:w-5" />
 }
 
-export function PostAuthor() {
+export function PostAuthor(user: any) {
   return (
     <div className="flex items-center gap-2">
       <Avatar className="h-7 w-7">
-        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarImage src={user.image} />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
       <div className="flex flex-col space-y-0.5">
         <h5 className="text-xs font-semibold text-foreground/90">
-          Soheil Ghanbary
+          {user.name}
         </h5>
         <h6 className="text-xs font-medium text-muted-foreground">
-          CEO Writtino
+          {user.email}
         </h6>
       </div>
     </div>

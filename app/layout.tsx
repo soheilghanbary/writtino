@@ -5,6 +5,7 @@ import "@/styles/globals.css"
 
 import type { Metadata } from "next"
 import { inter } from "@/public/fonts/font"
+import NextTopLoader from "nextjs-toploader"
 
 import { QueryProvider } from "@/components/providers/query-provider"
 
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <NextTopLoader color="#0ea5e9" />
         <QueryProvider>
           <ThemeProvider attribute="class" defaultTheme="dark">
             {children}

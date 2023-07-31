@@ -15,10 +15,10 @@ export default function ProfilePage() {
         </div>
       </div>
       <section className="mx-auto w-3/5 max-w-xl space-y-10">
+        {/* <Postcard />
         <Postcard />
         <Postcard />
-        <Postcard />
-        <Postcard />
+        <Postcard /> */}
       </section>
     </div>
   )

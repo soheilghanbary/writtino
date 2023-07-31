@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react"
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { atom, useAtom } from "jotai"
 import { FileWithPath } from "react-dropzone"
 
@@ -52,6 +52,19 @@ export const usePost = (postId: string) => {
     queryFn: async () => {
       const res = await fetch(`/api/posts?id=${postId}`)
       return await res.json()
+    },
+  })
+}
+
+export const useSearchPost = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async (query: string) => {
+      const res = await fetch(`/api/posts?search=${query}`)
+      return await res.json()
+    },
+    onSuccess: (data) => {
+      return queryClient.setQueryData(["posts"], data)
     },
   })
 }

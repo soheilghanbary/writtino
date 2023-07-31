@@ -1,11 +1,26 @@
-import { SinglePost } from "./post"
-import { PostAuthor } from "./post/post-author"
+import { prisma } from "@/lib/db"
 
-export default function PostPage({ params }: { params: { id: string } }) {
-  return (
-    <>
-      <SinglePost id={params.id} />
-      <PostAuthor id={params.id} />
-    </>
-  )
+import { SinglePost } from "./post"
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const post = await prisma.post.findFirst({ where: { id: params.id } })
+
+  return {
+    title: post?.title,
+    description: post?.description,
+    openGraph: {
+      title: post?.title,
+      description: post?.description,
+    },
+  }
+}
+
+export default async function PostPage({ params }: { params: { id: string } }) {
+  const post = await prisma.post.findFirst({
+    where: { id: params.id },
+    include: { user: true },
+  })
+
+  return <SinglePost {...post} />
+  // return <PostItem id={params.id} />
 }
