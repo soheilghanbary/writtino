@@ -82,6 +82,7 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   star: Star,
+  date: CalendarDays,
   twitter: Twitter,
   close: X,
   spinner: Loader2,

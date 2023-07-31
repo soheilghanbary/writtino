@@ -15,7 +15,7 @@ export function UserProfile() {
 
   return (
     <>
-      <section className="mx-auto flex max-w-xl items-center gap-8">
+      <section className="mx-auto flex w-4/6 items-center gap-8">
         <div className="relative h-32 w-32">
           <UserAvatar image={user.image} alt={user.name} />
         </div>
@@ -31,7 +31,7 @@ export function UserProfile() {
           </a>
         </div>
       </section>
-      <section className="mx-auto my-4 max-w-xl">
+      <section className="mx-auto my-4 w-4/6">
         <p className="my-4 text-sm text-muted-foreground">{user?.bio}</p>
         <h2 className="mb-4 text-base font-semibold text-foreground">
           Social Links
@@ -42,15 +42,15 @@ export function UserProfile() {
           </li>
           <li className="flex items-center text-muted-foreground">
             <Icons.twitter className="mr-2 h-4 w-4 text-sky-500" />
-            @soli_ghanbary
+            {user.twitter}
           </li>
           <li className="flex items-center text-muted-foreground">
             <Icons.insta className="mr-2 h-4 w-4 text-pink-500" />
-            soheil__ghanbary
+            {user.instagram}
           </li>
           <li className="flex items-center text-muted-foreground">
             <Icons.linkedin className="mr-2 h-4 w-4 text-blue-500" />
-            soheil_ghanbary
+            {user.linkedin}
           </li>
         </ul>
       </section>

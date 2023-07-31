@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
+import { redirect, useRouter } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
 
 import { useUploadThing } from "@/lib/uploadthing"
@@ -28,12 +29,18 @@ export function EditorHeader() {
   const titleRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
 
+  const router = useRouter()
+
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: async (data: any) => {
-      await fetch("/api/posts", {
+      const res = await fetch("/api/posts", {
         method: "POST",
         body: JSON.stringify(data),
       })
+      return await res.json()
+    },
+    onSuccess: (res: any) => {
+      router.push(`/blog/${res.id}`)
     },
   })
 
@@ -94,7 +101,9 @@ export function EditorHeader() {
               disabled={loading}
               variant={loading ? "outline" : "default"}
             >
-              {loading && <Icons.spinner className="h-4 w-4 animate-spin" />}
+              {loading && (
+                <Icons.spinner className="mr-4 h-4 w-4 animate-spin" />
+              )}
               Create Post
             </Button>
           </DialogFooter>

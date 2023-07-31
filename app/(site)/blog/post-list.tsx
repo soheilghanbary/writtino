@@ -2,14 +2,20 @@
 
 import { useAllPosts } from "@/hooks/use-post"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Postcard } from "@/components/post/post-card"
+
+import { PostCard } from "./post-card"
 
 export function PostList() {
   const { data: posts, isLoading } = useAllPosts()
   if (isLoading) return <PostCardSkeletons />
   return (
-    <div className="w-4/6 flex-1 space-y-8">
-      {posts?.map((p) => <Postcard key={p.id} {...p} />)}
+    <div className="mx-auto w-4/6 flex-1 space-y-8">
+      {posts?.map((p) => (
+        <>
+          <PostCard key={p.id} {...p} />
+          <hr className="my-2 last:hidden" />
+        </>
+      ))}
     </div>
   )
 }
@@ -28,7 +34,7 @@ export const PostCardSkeletons = () => (
           </div>
         </div>
         <hr />
-        <Skeleton className="relative h-24 w-24 rounded-lg shadow md:h-36 md:w-36" />
+        <Skeleton className="relative h-40 w-40 rounded-lg shadow md:h-36 md:w-36" />
       </div>
     ))}
   </div>

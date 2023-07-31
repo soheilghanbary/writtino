@@ -59,9 +59,8 @@ export async function POST(req: Request) {
       image: string
       content: string
     }
-    await prisma.post.create({ data: { ...postData, userId } })
-
-    return NextResponse.json(null, { status: 200 })
+    const newPost = await prisma.post.create({ data: { ...postData, userId } })
+    return NextResponse.json(newPost, { status: 200 })
   } catch (error) {
     return new Response(null, { status: 500 })
   }

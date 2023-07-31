@@ -1,9 +1,9 @@
 .title {
-  @apply text-center text-2xl font-black leading-relaxed text-foreground md:text-5xl md:leading-tight;  
+  @apply text-2xl font-black leading-relaxed text-foreground md:text-5xl md:leading-tight;  
 }
 
 .cover {
-  @apply relative my-8 h-60 w-full rounded-2xl md:h-96;
+  @apply relative my-4 h-60 w-full rounded-2xl md:h-96;
 
   img {
     @apply rounded-[inherit] w-full h-full shadow object-cover duration-300 transition;
@@ -17,8 +17,12 @@
     @apply md:text-3xl text-2xl font-semibold text-foreground my-2;
   }
 
+  h3 {
+    @apply md:text-2xl text-xl font-semibold text-foreground my-2;
+  }
+
   img {
-    margin: auto;
+    margin: 1rem auto;
   }
 
   p {

@@ -16,7 +16,7 @@ export function PostImageUpload() {
   return (
     <div className="space-y-2">
       <label className="text-sm font-medium" htmlFor="title">
-        Post Cover {path}
+        Post Cover
       </label>
       {path.length ? (
         <div

@@ -18,18 +18,16 @@ export const BlurImage: FC<Props> = ({ image, alt, className }) => {
   }
 
   return (
-    <div
-      className={cn(
-        "relative [&>img]:h-full [&>img]:w-full [&>img]:object-cover",
-        className
-      )}
-    >
+    <div className={cn("relative", className)}>
       <Image
         fill
         alt={alt}
         src={image}
         priority
-        className={isReady ? "blur-0" : "blur-lg"}
+        className={cn(
+          "h-full w-full rounded-[inherit] object-cover shadow transition duration-300",
+          isReady ? "blur-0" : "blur-lg"
+        )}
         onLoadingComplete={onLoadCallback}
       />
     </div>
