@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/db"
-
-import { SinglePost } from "./post"
+import { SinglePost } from "@/components/post/single-post"
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const post = await prisma.post.findFirst({ where: { id: params.id } })

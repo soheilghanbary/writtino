@@ -2,8 +2,7 @@
 
 import { useAllPosts } from "@/hooks/use-post"
 import { Skeleton } from "@/components/ui/skeleton"
-
-import { PostCard } from "./post-card"
+import { PostCard } from "@/components/post/post-card"
 
 export function PostList() {
   const { data: posts, isLoading } = useAllPosts()
@@ -21,7 +20,7 @@ export function PostList() {
 }
 
 export const PostCardSkeletons = () => (
-  <div className="w-4/6 flex-1 space-y-8">
+  <div className="mx-auto w-4/6 flex-1 space-y-8">
     {[...Array(4)].map((_, i) => (
       <div className="flex max-w-screen-sm items-center space-x-6">
         <div className="flex-1 space-y-2">

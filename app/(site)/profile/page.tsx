@@ -1,5 +1,5 @@
-import { PostList } from "../blog/post-list"
-import { UserProfile } from "./user-profile"
+import { PostList } from "@/components/post/post-list"
+import { UserProfile } from "@/components/user-profile"
 
 export default function ProfilePage() {
   return (

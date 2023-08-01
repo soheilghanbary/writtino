@@ -1,9 +1,5 @@
 "use client"
 
-import { useState } from "react"
-import Image from "next/image"
-
-import { cn } from "@/lib/utils"
 import { useCurrentUser } from "@/hooks/user"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Icons } from "@/components/icons"

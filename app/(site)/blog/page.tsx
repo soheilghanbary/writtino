@@ -1,8 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 
-import { PostList } from "./post-list"
-import { SearchPost } from "./search-post"
+import { PostList } from "../../../components/post/post-list"
+import { SearchPost } from "../../../components/post/search-post"
 
 const topics = [
   "Programming",
