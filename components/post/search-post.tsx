@@ -17,10 +17,13 @@ export function SearchPost() {
   }, [query])
 
   return (
-    <div className="mb-4 max-w-screen-sm space-y-2">
-      <h1 className="text-2xl font-bold text-foreground">
-        Seach Posts on the World: {query}
+    <div className="mx-auto mb-4 max-w-screen-sm space-y-4 text-center">
+      <h1 className="text-center text-4xl font-bold text-foreground">
+        Blogs Page
       </h1>
+      <p className="text-muted-foreground">
+        All the published blogs will appear here
+      </p>
       <div className="flex items-center gap-4">
         <Input
           type="text"
@@ -28,6 +31,7 @@ export function SearchPost() {
           onChange={(e) => {
             setText(e.target.value)
           }}
+          placeholder="Enter Blog Title Here"
           className="flex-1"
         />
         <Button variant={"default"}>Search</Button>

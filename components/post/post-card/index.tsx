@@ -3,20 +3,33 @@ import Link from "next/link"
 import { BlurImage } from "@/components/blur-image"
 import { Icons } from "@/components/icons"
 
-interface Props {}
+import styles from "./post-card.module.scss"
 
 export function PostCard(post: any) {
   return (
-    <div className="flex items-center space-x-4">
-      <div className="flex-1">
-        <PostTitle text={post.title} />
-        <PostDescription description={post.description} />
-        <PostFooter />
-        <PostAuthor {...post.user} />
+    <div className={styles.card}>
+      <div className={styles["card-details"]}>
+        <Link href={`/blog/${post.id}`}>
+          <h2 className={styles.title}>{post.title}</h2>
+        </Link>
+        <p className={styles.description}>{post.description}</p>
+        <hr />
+        <div className="flex items-center justify-between">
+          <PostAuthor {...post.user} />
+          <div className={styles["card-action"]}>
+            <span className="flex items-center text-sm text-foreground/70">
+              <Icons.heart className="mr-2 h-4 w-4" />
+              23.1K
+            </span>
+            <span className="flex items-center space-x-2 text-sm text-muted-foreground">
+              <Icons.saved className="h-4 w-4" />
+            </span>
+          </div>
+        </div>
       </div>
       <Link href={`/blog/${post.id}`}>
         <BlurImage
-          className="h-40 w-40 rounded-lg"
+          className={styles.cover}
           image={post.image}
           alt={post.title}
         />
@@ -24,26 +37,6 @@ export function PostCard(post: any) {
     </div>
   )
 }
-
-const PostTitle = ({ text }: { text: string }) => (
-  <h2 className="text-lg font-semibold">{text}</h2>
-)
-
-const PostDescription = ({ description }: { description: string }) => (
-  <p className="line-clamp-2 text-sm text-foreground/70">{description}</p>
-)
-
-const PostFooter = () => (
-  <div className="mt-3 flex items-center justify-end gap-4">
-    <span className="flex items-center text-sm text-foreground/70">
-      <Icons.heart className="mr-2 h-4 w-4" />
-      23.1K
-    </span>
-    <span className="flex items-center space-x-2 text-sm text-muted-foreground">
-      <Icons.saved className="h-4 w-4" />
-    </span>
-  </div>
-)
 
 const PostAuthor = (user: any) => (
   <div className="flex space-x-2">

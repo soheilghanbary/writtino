@@ -56,7 +56,7 @@ export function UserProfile() {
 
 export const UserProfileSkeleton = () => (
   <>
-    <section className="mx-auto flex max-w-xl items-center gap-8">
+    <section className="mx-auto flex w-4/6 items-center gap-8">
       <Skeleton className="relative h-32 w-32 rounded-full" />
       <div className="space-y-2">
         <Skeleton className="h-4 w-48" />
@@ -64,7 +64,7 @@ export const UserProfileSkeleton = () => (
         <Skeleton className="h-4 w-24" />
       </div>
     </section>
-    <section className="mx-auto my-4 max-w-xl space-y-4">
+    <section className="mx-auto my-4 w-4/6 space-y-4">
       <Skeleton className="h-3 w-full rounded-full" />
       <Skeleton className="h-3 w-full rounded-full" />
     </section>

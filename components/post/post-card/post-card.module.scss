@@ -1,0 +1,23 @@
+.card {
+  @apply flex space-x-4;
+}
+
+.card-details {
+  @apply flex-1 space-y-3;
+}
+
+.card-action {
+  @apply flex items-center justify-start gap-4;
+}
+
+.title {
+  @apply text-lg font-bold;
+}
+
+.description {
+  @apply md:line-clamp-3 text-sm text-muted-foreground hidden;
+}
+
+.cover {
+  @apply lg:h-40 lg:w-40 w-28 h-28 rounded-lg;
+}

@@ -36,11 +36,11 @@ export const usePostState = () => {
   return { updateContent, updateImage, post, onDrop, path }
 }
 
-export const useAllPosts = () => {
+export const useAllPosts = (role: string) => {
   return useQuery<PostType[]>({
     queryKey: ["posts"],
     queryFn: async () => {
-      const res = await fetch("/api/posts")
+      const res = await fetch(`/api/posts?role=${role}`)
       return await res.json()
     },
   })

@@ -21,5 +21,4 @@ export default async function PostPage({ params }: { params: { id: string } }) {
   })
 
   return <SinglePost {...post} />
-  // return <PostItem id={params.id} />
 }

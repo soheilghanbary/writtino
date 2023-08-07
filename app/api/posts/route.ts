@@ -13,9 +13,19 @@ async function fetchPostById(id: string) {
 }
 
 // Fetch all posts
-async function fetchAllPosts() {
-  const posts = await prisma.post.findMany({ include: { user: true } })
-  return NextResponse.json(posts, { status: 200 })
+async function fetchAllPosts(role: string) {
+  if (role === "all") {
+    const posts = await prisma.post.findMany({ include: { user: true } })
+    return NextResponse.json(posts, { status: 200 })
+  }
+  if (role === "user") {
+    const userId = await getUserSession()
+    const posts = await prisma.post.findMany({
+      where: { userId },
+      include: { user: true },
+    })
+    return NextResponse.json(posts, { status: 200 })
+  }
 }
 
 // Fetch posts by search -> query
@@ -35,11 +45,12 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const postId = searchParams.get("id")
   const query = searchParams.get("search")
+  const role = searchParams.get("role")!
 
   try {
     if (query !== null) return searchPost(query)
     if (postId !== null) return fetchPostById(postId)
-    return fetchAllPosts()
+    return fetchAllPosts(role)
   } catch (error) {
     return new Response(null, { status: 500 })
   }
